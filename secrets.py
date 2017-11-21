@@ -1,5 +1,0 @@
-gAPIKey = 'AIzaSyDuXCSAoFvJSNuIOctLknJNLSWRPFhC10k'
-gOrigin = '2107 Darby Court Walnut Creek CA 94596'
-bAPIKey = 'MBZR-BWDU-QJQE-IH2A'
-wAPIKey = 'bc1275af39777d97'
-avAPIKey = '9CBTYRG52LWYF1AP'
