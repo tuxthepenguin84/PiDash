@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta charset="utf-8" />
+      <title>Pi Dashboard</title>
+      <meta name="description" content="" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      <!-- bootstrap & fontawesome -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+      <!-- page specific plugin styles -->
+      <!-- text fonts -->
+      <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+      <!-- ace styles -->
+      <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+      <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+      <![endif]-->
+      <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+      <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+      <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+      <![endif]-->
+      <!-- inline styles related to this page -->
+      <!-- ace settings handler -->
+      <script src="assets/js/ace-extra.min.js"></script>
+      <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+      <!--[if lte IE 8]>
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+      <![endif]-->
+   </head>
+<script>
+var currentTime = "Sun Nov 19 13:03:05 2017";
+
+var wWeather = "Partly Cloudy";
+var wTemp = "Currently 58.3 F";
+var wPrecip = "0.00 inches";
+var wWind = "0.0 mph ";
+var wHumidity = "68%";
+
+var w1Day = "Monday";
+var w1Conditions = "Overcast";
+var w1Temp = "High 66 F |  Low 51 F";
+var w1QPF = "0.0 inches";
+var w1Wind = "4 mph";
+var w1Humidity = "66%";
+var w2Day = "Tuesday";
+var w2Conditions = "Partly Cloudy";
+var w2Temp = "High 72 F |  Low 51 F";
+var w2QPF = "0.0 inches";
+var w2Wind = "5 mph";
+var w2Humidity = "70%";
+var w3Day = "Wednesday";
+var w3Conditions = "Partly Cloudy";
+var w3Temp = "High 73 F |  Low 54 F";
+var w3QPF = "0.0 inches";
+var w3Wind = "4 mph";
+var w3Humidity = "73%";
+
+var btcPrice = "$ 8034.53";
+var ethPrice = "$ 350.69";
+var ltcPrice = "$ 70.70";
+var zngaPrice = "$ 3.94";
+var mckPrice = "$ 142.24";
+
+var alexisNextTrain = "18 minutes";
+var samNextTrain = "18 minutes";
+var alexisLeaveBy = "5 minutes";
+var samLeaveBy = "1 minutes";
+var alexisDelay = "None";
+var samDelay = "None";
+
+</script>
+   <body class="no-skin">
+      <div id="navbar" class="navbar navbar-default          ace-save-state">
+         <div class="navbar-container ace-save-state" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header pull-left">
+               <a href="index.html" class="navbar-brand">
+               <small>
+               <i class="fa fa-cloud"></i>
+               Pi Dashboard
+               </small>
+               </a>
+            </div>
+         </div>
+         <!-- /.navbar-container -->
+      </div>
+      <div class="main-container ace-save-state" id="main-container">
+         <script type="text/javascript">
+            try{ace.settings.loadState('main-container')}catch(e){}
+         </script>
+         <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+            <script type="text/javascript">
+               try{ace.settings.loadState('sidebar')}catch(e){}
+            </script>
+            <ul class="nav nav-list">
+               <li class="active">
+                  <a href="index.html">
+                  <i class="menu-icon fa fa-desktop"></i>
+                  <span class="menu-text">Overview & Stats </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="cameras.html">
+                  <i class="menu-icon fa fa-camera"></i>
+                  <span class="menu-text">Cameras </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="calendar.html">
+                  <i class="menu-icon fa fa-calendar"></i>
+                  <span class="menu-text">Calendar</span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+            </ul>
+            <!-- /.nav-list -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+               <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+         </div>
+         <div class="main-content">
+            <div class="main-content-inner">
+               <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                  <ul class="breadcrumb">
+                     <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="#">Home</a>
+                     </li>
+                     <li class="active">Overview & Stats</li>
+                  </ul>
+                  <!-- /.breadcrumb -->
+               </div>
+               <div class="page-content">
+                  <!-- PAGE CONTENT BEGINS -->
+				  <small>Last Refresh: <script>document.write(currentTime)</script></small>
+                  <!-- Begin WEATHER -->
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <div class="widget-box transparent">
+                           <div class="widget-header widget-header-flat">
+                              <h4 class="widget-title lighter">
+                                 <i class="ace-icon fa fa-cloud blue"></i>
+                                 Weather
+                              </h4>
+                           </div>
+                           <div class="widget-body">
+                              <div class="widget-main no-padding">
+                                 <table class="table table-bordered table-striped">
+                                    <thead class="thin-border-bottom">
+                                       <tr>
+                                          <th>
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Conditions
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Temperature
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Precipitation
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Wind
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Humidity
+                                          </th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>Today</td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(wWeather)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(wTemp)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(wPrecip)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(wWind)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(wHumidity)</script>
+                                             </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <script>document.write(w1Day)</script>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w1Conditions)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w1Temp)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w1QPF)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w1Wind)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w1Humidity)</script>
+                                             </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <script>document.write(w2Day)</script>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w2Conditions)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w2Temp)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w2QPF)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w2Wind)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w2Humidity)</script>
+                                             </span>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <script>document.write(w3Day)</script>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w3Conditions)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w3Temp)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w3QPF)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w3Wind)</script>
+                                             </span>
+                                          </td>
+                                          <td>
+                                             <span class="blue">
+                                                <script>document.write(w3Humidity)</script>
+                                             </span>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- /.widget-main -->
+                           </div>
+                           <!-- /.widget-body -->
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End WEATHER -->
+                  <!-- Begin BART -->
+                  <div class="row">
+                     <div class="hr hr-dotted hr-16"></div>
+                     <div class="col-sm-5">
+                        <div class="widget-box transparent">
+                           <div class="widget-header widget-header-flat">
+                              <h4 class="widget-title lighter">
+                                 <i class="ace-icon fa fa-rss orange"></i>
+                                 Catch BART
+                              </h4>
+                           </div>
+                           <div class="widget-body">
+                              <div class="widget-main no-padding">
+                                 <table class="table table-bordered table-striped">
+                                    <thead class="thin-border-bottom">
+                                       <tr>
+                                          <th>
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Lafayette BART Departs In
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Leave In The Next
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Delays
+                                          </th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>Alexis</td>
+                                          <td class="hidden-480">
+                                             <b class="blue">
+                                                <script>document.write(alexisNextTrain)</script>
+                                             </b>
+                                          </td>
+                                          <td class="hidden-480">
+                                             <span class="label label-success arrowed-right arrowed-in">
+                                                <script>document.write(alexisLeaveBy)</script>
+                                             </span>
+                                          </td>
+                                          <td class="hidden-480">
+                                             <b class="blue">
+                                                <script>document.write(alexisDelay)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Sam</td>
+                                          <td class="hidden-480">
+                                             <b class="blue">
+                                                <script>document.write(samNextTrain)</script>
+                                             </b>
+                                          </td>
+                                          <td class="hidden-480">
+                                             <span class="label label-success arrowed-right arrowed-in">
+                                                <script>document.write(samLeaveBy)</script>
+                                             </span>
+                                          </td>
+                                          <td class="hidden-480">
+                                             <b class="blue">
+                                                <script>document.write(samDelay)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- /.widget-main -->
+                           </div>
+                           <!-- /.widget-body -->
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End BART -->
+                  <!-- Begin STOCKS -->
+                  <div class="row">
+                     <div class="hr hr-dotted hr-16"></div>
+                     <div class="col-sm-2">
+                        <div class="widget-box transparent">
+                           <div class="widget-header widget-header-flat">
+                              <h4 class="widget-title lighter">
+                                 <i class="ace-icon fa fa-bar-chart-o green"></i>
+                                 Stocks & Curriencies
+                              </h4>
+                           </div>
+                           <div class="widget-body">
+                              <div class="widget-main no-padding">
+                                 <table class="table table-bordered table-striped">
+                                    <thead class="thin-border-bottom">
+                                       <tr>
+                                          <th>
+                                          </th>
+                                          <th>
+                                             <i class="ace-icon fa fa-caret-right blue"></i>Price
+                                          </th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>Bitcoin</td>
+                                          <td>
+                                             <b class="blue">
+                                                <script>document.write(btcPrice)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Etherium</td>
+                                          <td>
+                                             <b class="blue">
+                                                <script>document.write(ethPrice)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Litecoin</td>
+                                          <td>
+                                             <b class="blue">
+                                                <script>document.write(ltcPrice)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>Zynga</td>
+                                          <td>
+                                             <b class="blue">
+                                                <script>document.write(zngaPrice)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td>McKesson</td>
+                                          <td>
+                                             <b class="blue">
+                                                <script>document.write(mckPrice)</script>
+                                             </b>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              <!-- /.widget-main -->
+                           </div>
+                           <!-- /.widget-body -->
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End STOCKS -->
+                  <!-- PAGE CONTENT ENDS -->
+               </div>
+            </div>
+            <!-- /.col -->
+            <!-- /.row -->
+         </div>
+         <!-- /.page-content -->
+      </div>
+      </div>
+      <!-- /.main-content -->
+      <div class="footer">
+         <div class="footer-inner">
+            <div class="footer-content">
+               <span class="bigger-120">
+               <span class="blue bolder">Ace</span>
+               Application &copy; 2013-2014
+               </span>
+               &nbsp; &nbsp;
+            </div>
+         </div>
+      </div>
+      <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+      <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+      </a>
+      </div>
+      <!-- /.main-container -->
+      <!-- basic scripts -->
+      <!--[if !IE]> -->
+      <script src="assets/js/jquery-2.1.4.min.js"></script>
+      <!-- <![endif]-->
+      <!--[if IE]>
+      <script src="assets/js/jquery-1.11.3.min.js"></script>
+      <![endif]-->
+      <script type="text/javascript">
+         if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+      </script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <!-- page specific plugin scripts -->
+      <!-- ace scripts -->
+      <script src="assets/js/ace-elements.min.js"></script>
+      <script src="assets/js/ace.min.js"></script>
+      <!-- inline scripts related to this page -->
+   </body>
+</html>
+</html>
