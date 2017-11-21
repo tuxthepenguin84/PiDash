@@ -15,10 +15,10 @@ currentTime = ('\n'.join([
     ]))
 
 #Clear index.html
-open('../html/custom/index.html', 'w').close()
+open('../html/index.html', 'w').close()
 #Reopen index.html with Append
-with open('../html/custom/index.html', 'a') as outfile:
-    for eachLine in fileinput.FileInput('../html/custom/index-custom-base.html'):
+with open('../html/index.html', 'a') as outfile:
+    for eachLine in fileinput.FileInput('../html/index-custom-base.html'):
         if "</head>" in eachLine:
             eachLine=eachLine.replace(eachLine,eachLine + scriptStart + \
                                       currentTime + \
