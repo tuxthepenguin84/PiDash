@@ -4,6 +4,7 @@ from pprint import pprint
 import requests
 from secrets import *
 import urllib.parse
+import datetime
 
 ##Variables
 debug = 0
@@ -20,7 +21,7 @@ gFullURL = gAPIURL + \
 
 #BART variables
 bSamWalkingFactor = 6 #Number of minutes walking from Sam's car to station
-bAlexisWalkingFactor = 2 #Number of minutes walking from Alexis's car to station
+bAlexisWalkingFactor = 3 #Number of minutes walking from Alexis's car to station
 bAPIURL = 'http://api.bart.gov/api/etd.aspx?'
 bStation = 'lafy'
 bFullURL = bAPIURL + \
@@ -73,7 +74,11 @@ if debug == 1:
 #Time left to leave is soonest departing train minus travel time to staion from the house
 samTimeLeftToLeave = samTrain[0] - samHouseToStationTime
 alexisTimeLeftToLeave = alexisTrain[0] - alexisHouseToStationTime
+currentTime = datetime.datetime.now()
+samLeaveAt = datetime.datetime.time(currentTime + datetime.timedelta(minutes=samTimeLeftToLeave)).strftime('%I:%M:%p')
+alexisLeaveAt = datetime.datetime.time(currentTime + datetime.timedelta(minutes=alexisTimeLeftToLeave)).strftime('%I:%M:%p')
 
+#Get delay time
 if (alexisTrain[1] == 0):
     alexisTrain.insert(1, 'None')
 elif (alexisTrain[1] >= 900):
@@ -106,6 +111,8 @@ catchBartOutput = ('\n'.join([
     'var samNextTrain = "' + str(samTrain[0]) + ' minutes' + '";',
     'var alexisLeaveBy = "' + str(alexisTimeLeftToLeave) + ' minutes' + '";',
     'var samLeaveBy = "' + str(samTimeLeftToLeave) + ' minutes' + '";',
+    'var alexisLeaveAt = "' + str(alexisLeaveAt) + '";',
+    'var samLeaveAt = "' + str(samLeaveAt) + '";',
     'var alexisDelay = "' + str(alexisTrain[1]) + '";',
     'var samDelay = "' + str(samTrain[1]) + '";',
     '\n',
