@@ -3,7 +3,6 @@ import json
 from pprint import pprint
 import requests
 from secrets import *
-import urllib.parse
 
 ##Variables
 debug = 0

@@ -1,10 +1,12 @@
 ##Modules
+import datetime
 import json
 from pprint import pprint
+import re
 import requests
 from secrets import *
 import urllib.parse
-import datetime
+
 
 ##Variables
 debug = 0
@@ -20,8 +22,11 @@ gFullURL = gAPIURL + \
                   '&key=' + gAPIKey
 
 #BART variables
-bSamWalkingFactor = 6 #Number of minutes walking from Sam's car to station
-bAlexisWalkingFactor = 3 #Number of minutes walking from Alexis's car to station
+alexisWalk = 3 #Number of minutes walking from Alexis's car to station
+samWalk = 6 #Number of minutes walking from Sam's car to station
+allTrains = []
+alexisTrain = []
+samTrain = []
 bAPIURL = 'http://api.bart.gov/api/etd.aspx?'
 bStation = 'lafy'
 bFullURL = bAPIURL + \
@@ -33,18 +38,24 @@ bFullURL = bAPIURL + \
 
 ##Begin script
 #Get JSON data from Google
-gJSONData = requests.get(gFullURL).json() #Possible to limit/filter data here?
-gDurationSecs = gJSONData['routes'][0]['legs'][0]['duration_in_traffic']['value']
-gDurationMins = int(round(gDurationSecs/60,0))
-#Time from the house to the station
-samHouseToStationTime = gDurationMins + bSamWalkingFactor
-alexisHouseToStationTime = gDurationMins + bAlexisWalkingFactor
-
+gJSONData = requests.get(gFullURL).json()
 #Get JSON data from BART
 bJSONData = requests.get(bFullURL).json()
-allTrains = []
-alexisTrain = []
-samTrain = []
+
+#Print all JSON data for testing
+if debug == 1:
+    pprint(gJSONData)
+    pprint(bJSONData)
+
+#Get Google Maps travel time and convert to minutes
+gDurationSecs = gJSONData['routes'][0]['legs'][0]['duration_in_traffic']['value']
+gDurationMins = int(round(gDurationSecs/60,0))
+
+#Time from the house to the station
+samTravelTime = gDurationMins + samWalk
+alexisTravelTime = gDurationMins + alexisWalk
+
+#Gather all train departures
 for eachDestination in bJSONData['root']['station'][0]['etd']:
     for eachMinute in (eachDestination['estimate']):
         train = []
@@ -56,29 +67,27 @@ for eachDestination in bJSONData['root']['station'][0]['etd']:
 #Sort train data by soonest departure time
 allTrains = sorted(allTrains)
 
-#Find next train
+#Find next train for each person
 for eachTrain in allTrains:
-    if eachTrain[0] > alexisHouseToStationTime:
+    if eachTrain[0] > alexisTravelTime:
         alexisTrain = eachTrain[0:2]
         break
 for eachTrain in allTrains:
-    if eachTrain[0] > samHouseToStationTime:
+    if eachTrain[0] > samTravelTime:
         samTrain = eachTrain[0:2]
         break
 
-#Print all JSON data for testing
-if debug == 1:
-    pprint(gJSONData)
-    pprint(bJSONData)
-    
 #Time left to leave is soonest departing train minus travel time to staion from the house
-samTimeLeftToLeave = samTrain[0] - samHouseToStationTime
-alexisTimeLeftToLeave = alexisTrain[0] - alexisHouseToStationTime
+samTimeLeftToLeave = samTrain[0] - samTravelTime
+alexisTimeLeftToLeave = alexisTrain[0] - alexisTravelTime
 currentTime = datetime.datetime.now()
-samLeaveAt = datetime.datetime.time(currentTime + datetime.timedelta(minutes=samTimeLeftToLeave)).strftime('%I:%M:%p')
-alexisLeaveAt = datetime.datetime.time(currentTime + datetime.timedelta(minutes=alexisTimeLeftToLeave)).strftime('%I:%M:%p')
+samLeaveAt = datetime.datetime.time(currentTime + datetime.timedelta(minutes=samTimeLeftToLeave)).strftime('%I:%M %p')
+alexisLeaveAt = datetime.datetime.time(currentTime + datetime.timedelta(minutes=alexisTimeLeftToLeave)).strftime('%I:%M %p')
+#Fix leading 0 in time
+samLeaveAt = re.sub(r'^0','',samLeaveAt)
+alexisLeaveAt = re.sub(r'^0','',alexisLeaveAt)
 
-#Get delay time
+#Get amount of time the train is delayed
 if (alexisTrain[1] == 0):
     alexisTrain.insert(1, 'None')
 elif (alexisTrain[1] >= 900):
@@ -109,10 +118,10 @@ elif (samTrain[1] >= 1):
 catchBartOutput = ('\n'.join([
     'var alexisNextTrain = "' + str(alexisTrain[0]) + ' minutes' + '";',
     'var samNextTrain = "' + str(samTrain[0]) + ' minutes' + '";',
-    'var alexisLeaveBy = "' + str(alexisTimeLeftToLeave) + ' minutes' + '";',
-    'var samLeaveBy = "' + str(samTimeLeftToLeave) + ' minutes' + '";',
     'var alexisLeaveAt = "' + str(alexisLeaveAt) + '";',
     'var samLeaveAt = "' + str(samLeaveAt) + '";',
+    'var alexisLeaveBy = "' + 'within ' + str(alexisTimeLeftToLeave) + ' minutes' + '";',
+    'var samLeaveBy = "' + 'within ' + str(samTimeLeftToLeave) + ' minutes' + '";',
     'var alexisDelay = "' + str(alexisTrain[1]) + '";',
     'var samDelay = "' + str(samTrain[1]) + '";',
     '\n',

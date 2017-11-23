@@ -1,16 +1,15 @@
 ##Modules
-import fileinput
-import time
 from catchbart import catchBartOutput
-from weather import weatherOutput
-from weatherforecast import weatherForecastOutput
+import fileinput
 from stockscurrencies import stocksCurrenciesOutput
+from time import localtime, strftime
+from weather import weatherOutput
 
 ##Begin Script
 scriptStart = '<script>\n'
 scriptEnd = '</script>\n'
 currentTime = ('\n'.join([
-    'var currentTime = "' + str(time.ctime()) + '";',
+    'var currentTime = "' + strftime("%a, %b %d %I:%M %p", localtime()) + '";',
     '\n',
     ]))
 
@@ -22,10 +21,9 @@ with open('../html/index.html', 'a') as outfile:
         if "</head>" in eachLine:
             eachLine=eachLine.replace(eachLine,eachLine + scriptStart + \
                                       currentTime + \
-                                      weatherOutput + \
-                                      weatherForecastOutput + \
-                                      stocksCurrenciesOutput + \
                                       catchBartOutput + \
+                                      stocksCurrenciesOutput + \
+                                      weatherOutput + \
                                       scriptEnd)
             outfile.write(eachLine)
         else:
@@ -36,5 +34,4 @@ outfile.close()
 ##Functionality to add
 #BART load factor
 #Radar animated
-#Time stamp
 #Send message
