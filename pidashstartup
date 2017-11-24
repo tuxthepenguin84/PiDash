@@ -5,11 +5,14 @@ open (IN, "xscreensaver-command -watch |");
 while (<IN>) {
     if (m/^BLANK/) {
         if (!$blanked) {
+	    system "echo -n Blanking screen at:";
             system "date";
             $blanked = 1;
         }
     } elsif (m/^UNBLANK/) {
-        system "#sh /home/pi/projects/PiDash/start.sh";
+	system "echo -n Un-Blanking screen at:";
+	system "date";
+        system "sh /home/pi/projects/PiDash/refresh.sh";
         $blanked = 0;
     }
 }
