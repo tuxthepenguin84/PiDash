@@ -91,28 +91,28 @@ alexisLeaveAt = re.sub(r'^0','',alexisLeaveAt)
 if (alexisTrain[1] == 0):
     alexisTrain.insert(1, 'None')
 elif (alexisTrain[1] >= 900):
-    alexisTrain.insert(1, '> 15 minutes')
+    alexisTrain.insert(1, '> 15 min')
 elif (alexisTrain[1] >= 600):
-    alexisTrain.insert(1, '10-15 minutes')
+    alexisTrain.insert(1, '10-15 min')
 elif (alexisTrain[1] >= 300):
-    alexisTrain.insert(1, '5-10 minutes')
+    alexisTrain.insert(1, '5-10 min')
 elif (alexisTrain[1] >= 60):
-    alexisTrain.insert(1, '1-5 minutes')
+    alexisTrain.insert(1, '1-5 min')
 elif (alexisTrain[1] >= 1):
-    alexisTrain.insert(1, '< 1 minute')
+    alexisTrain.insert(1, '< 1 min')
 
 if (samTrain[1] == 0):
     samTrain.insert(1, 'None')
 elif (samTrain[1] >= 900):
-    samTrain.insert(1, '> 15 minutes')
+    samTrain.insert(1, '> 15 min')
 elif (samTrain[1] >= 600):
-    samTrain.insert(1, '10-15 minutes')
+    samTrain.insert(1, '10-15 min')
 elif (samTrain[1] >= 300):
-    samTrain.insert(1, '5-10 minutes')
+    samTrain.insert(1, '5-10 min')
 elif (samTrain[1] >= 60):
-    samTrain.insert(1, '1-5 minutes')
+    samTrain.insert(1, '1-5 min')
 elif (samTrain[1] >= 1):
-    samTrain.insert(1, '< 1 minute')
+    samTrain.insert(1, '< 1 min')
 
 #Format data into HTML for pickup by main.py
 catchBartOutput = ('\n'.join([
@@ -120,8 +120,8 @@ catchBartOutput = ('\n'.join([
     'var samNextTrain = "' + str(samTrain[0]) + ' minutes' + '";',
     'var alexisLeaveAt = "' + str(alexisLeaveAt) + '";',
     'var samLeaveAt = "' + str(samLeaveAt) + '";',
-    'var alexisLeaveBy = "' + 'within ' + str(alexisTimeLeftToLeave) + ' minutes' + '";',
-    'var samLeaveBy = "' + 'within ' + str(samTimeLeftToLeave) + ' minutes' + '";',
+    'var alexisLeaveBy = "' + str(alexisTimeLeftToLeave) + ' minutes' + '";',
+    'var samLeaveBy = "' + str(samTimeLeftToLeave) + ' minutes' + '";',
     'var alexisDelay = "' + str(alexisTrain[1]) + '";',
     'var samDelay = "' + str(samTrain[1]) + '";',
     '\n',
