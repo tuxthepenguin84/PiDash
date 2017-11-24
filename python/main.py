@@ -1,9 +1,15 @@
 ##Modules
-from catchbart import catchBartOutput
-import fileinput
-from stockscurrencies import stocksCurrenciesOutput
 from time import localtime, strftime
+import fileinput
+print('Refreshing BART data... ', end="")
+from catchbart import catchBartOutput
+print('DONE')
+print('Refreshing Weather data... ', end="")
 from weather import weatherOutput
+print('DONE')
+print('Refreshing Stock & Currency data... ', end="")
+from stockscurrencies import stocksCurrenciesOutput
+print('DONE')
 
 ##Begin Script
 scriptStart = '<script>\n'
