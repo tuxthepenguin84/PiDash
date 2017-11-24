@@ -2,53 +2,48 @@
 import json
 from pprint import pprint
 import requests
-from secrets import *
 
 ##Variables
-debug = 0
-#Alpha Vantage variables
-avAPIURL = 'https://www.alphavantage.co/query?'
- 
+debug = 1
+#CoinMarketCap variables
+cAPIURL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-##Alpha Vantage script
+#IEX variables
+iexAPIURL = 'https://api.iextrading.com/1.0/stock/'
+
+##CoinMarketCap script
 #Get JSON data from AV
-avCCSymbol = ['BTC','ETH','LTC']
-avFunction = 'DIGITAL_CURRENCY_INTRADAY'
-allCurrencyIntra = []
-for eachCCSymbol in avCCSymbol:
+cCCSymbol = ['bitcoin','ethereum','litecoin']
+allCurrency = []
+for eachCCSymbol in cCCSymbol:
     currency = []
-    avFullURL = avAPIURL + 'function=' + avFunction + '&symbol=' + eachCCSymbol + '&market=USD' + '&apikey=' + avAPIKey
-    avJSONData = requests.get(avFullURL).json()
-    lastRefresh = avJSONData['Meta Data']['7. Last Refreshed']
-    currentAll = avJSONData['Time Series (Digital Currency Intraday)'][lastRefresh]
-    currentPrice = "%.2f" % float(currentAll['1a. price (USD)'])
-    currency.append(currentPrice)
-    allCurrencyIntra.append(currency)
+    cFullURL = cAPIURL + eachCCSymbol
+    cJSONData = requests.get(cFullURL).json()
+    cCurrentPrice = float(cJSONData[0]['price_usd'])
+    currency.append(round(cCurrentPrice,2))
+    allCurrency.append(currency)
 
-avSMSymbol = ['ZNGA', 'MCK']
-avFunction = 'TIME_SERIES_INTRADAY'
-allStockIntra = []
-for eachSMSymbol in avSMSymbol:
+iexSMSymbol = ['znga', 'mck']
+allStock = []
+for eachSMSymbol in iexSMSymbol:
     stock = []
-    avFullURL = avAPIURL + 'function=' + avFunction + '&symbol=' + eachSMSymbol + '&interval=1min' + '&apikey=' + avAPIKey
-    avJSONData = requests.get(avFullURL).json()
-    lastRefresh = avJSONData['Meta Data']['3. Last Refreshed']
-    currentAll = avJSONData['Time Series (1min)'][lastRefresh]
-    currentPrice = "%.2f" % float(currentAll['1. open'])
-    stock.append(currentPrice)
-    allStockIntra.append(stock)
+    iexFullURL = iexAPIURL + eachSMSymbol + '/quote'
+    iexJSONData = requests.get(iexFullURL).json()
+    iexCurrentPrice = float(iexJSONData['latestPrice'])
+    stock.append(round(iexCurrentPrice,2))
+    allStock.append(stock)
 
 #Print all JSON data for testing
-if debug == 1:
-    print(allCurrencyIntra)
-    print(allStockIntra)
+if debug == 0:
+    print(allCurrency)
+    print(allStock)
 
 #Final variables
 stocksCurrenciesOutput = ('\n'.join([
-    'var btcPrice = "' + "$ " + str(allCurrencyIntra[0][0]) + '";',
-    'var ethPrice = "' + "$ " + str(allCurrencyIntra[1][0]) + '";',
-    'var ltcPrice = "' + "$ " + str(allCurrencyIntra[2][0]) + '";',
-    'var zngaPrice = "' + "$ " + str(allStockIntra[0][0]) + '";',
-    'var mckPrice = "' + "$ " + str(allStockIntra[1][0]) + '";',
+    'var btcPrice = "' + "$ " + str(allCurrency[0][0]) + '";',
+    'var ethPrice = "' + "$ " + str(allCurrency[1][0]) + '";',
+    'var ltcPrice = "' + "$ " + str(allCurrency[2][0]) + '";',
+    'var zngaPrice = "' + "$ " + str(allStock[0][0]) + '";',
+    'var mckPrice = "' + "$ " + str(allStock[1][0]) + '";',
     '\n',
     ]))
