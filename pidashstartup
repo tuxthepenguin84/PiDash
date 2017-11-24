@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+system('2>/dev/null 1>&2 chromium-browser --start-fullscreen /home/pi/projects/PiDash/html/index.html &');
+my $blanked = 0;
+open (IN, "xscreensaver-command -watch |");
+while (<IN>) {
+    if (m/^BLANK/) {
+        if (!$blanked) {
+            system "date";
+            $blanked = 1;
+        }
+    } elsif (m/^UNBLANK/) {
+        system "#sh /home/pi/projects/PiDash/start.sh";
+        $blanked = 0;
+    }
+}
