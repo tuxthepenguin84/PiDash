@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 system('2>/dev/null 1>&2 chromium-browser --start-fullscreen /home/pi/projects/PiDash/html/index.html &');
+system('sh /home/pi/projects/PiDash/refresh.sh');
 my $blanked = 0;
 open (IN, "xscreensaver-command -watch |");
 while (<IN>) {
