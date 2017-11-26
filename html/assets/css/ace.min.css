@@ -20,7 +20,7 @@ body {
     background-color: #E4E6E9;
     padding-bottom: 0;
     font-family: 'Open Sans';
-    font-size: 24px;
+    font-size: 26px;
     color: #393939;
     line-height: 1.5
 }
@@ -1871,11 +1871,11 @@ pre.prettyprint {
 }
 .nav-list>li>a {
     display: block;
-    height: 45px;
+    height: 50px;
     line-height: 17px;
     padding-left: 7px;
     text-shadow: none!important;
-    font-size: 24px
+    font-size: 26px
 }
 .nav-list>li>a>.menu-icon {
     display: inline-block;
@@ -1883,7 +1883,7 @@ pre.prettyprint {
     margin-right: 2px;
     vertical-align: center;
     text-align: center;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 400
 }
 .nav-list>li:before {
@@ -2214,7 +2214,7 @@ body.mob-safari .sidebar.sidebar-fixed {
     display: block;
     position: absolute;
     right: 0;
-    top: 4px;
+    top: 10px;
     border: 8px solid transparent;
     border-width: 14px 10px
 }
