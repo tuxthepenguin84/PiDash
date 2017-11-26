@@ -20,7 +20,7 @@ body {
     background-color: #E4E6E9;
     padding-bottom: 0;
     font-family: 'Open Sans';
-    font-size: 16px;
+    font-size: 24px;
     color: #393939;
     line-height: 1.5
 }
@@ -83,7 +83,7 @@ li.divider:before {
     clear: both
 }
 .sidebar+.main-content {
-    margin-left: 140px
+    margin-left: 180px
 }
 .page-content {
     background-color: #FFF;
@@ -1824,7 +1824,7 @@ pre.prettyprint {
     margin-left: 7px
 }
 .sidebar {
-    width: 140px;
+    width: 180px;
     float: left;
     position: static;
     padding-left: 0;
@@ -1871,19 +1871,19 @@ pre.prettyprint {
 }
 .nav-list>li>a {
     display: block;
-    height: 39px;
+    height: 45px;
     line-height: 17px;
     padding-left: 7px;
     text-shadow: none!important;
-    font-size: 18px
+    font-size: 24px
 }
 .nav-list>li>a>.menu-icon {
     display: inline-block;
     min-width: 30px;
     margin-right: 2px;
-    vertical-align: sub;
+    vertical-align: center;
     text-align: center;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 400
 }
 .nav-list>li:before {
