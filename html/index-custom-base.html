@@ -32,7 +32,7 @@
       <![endif]-->
    </head>
    <body class="no-skin">
-      <div id="navbar" class="navbar navbar-default          ace-save-state">
+      <div id="navbar" class="navbar navbar-default ace-save-state">
          <div class="navbar-container ace-save-state" id="navbar-container">
             <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
             <span class="sr-only">Toggle sidebar</span>
@@ -42,9 +42,13 @@
             </button>
             <div class="navbar-header pull-left">
                <a href="index.html" class="navbar-brand">
-               <small><i class="fa fa-cloud"></i>
+               <i class="fa fa-cloud"></i>
 			   Pi Dashboard
-			   </small></a>
+			   </a>
+            </div>
+			<div class="navbar-header pull-right">
+               <div class="navbar-brand">
+			   Home - <small>Last Refresh: <script>document.write(currentTime)</script></small></div>
             </div>
          </div>
          <!-- /.navbar-container -->
@@ -84,31 +88,20 @@
          </div>
          <div class="main-content">
             <div class="main-content-inner">
-               <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-                  <ul class="breadcrumb">
-                     <li>
-                        <i class="ace-icon fa fa-home home-icon"></i>
-                     </li>
-                     <li class="active">Home</li>
-                     <li class=""><small>Last Refresh: <script>document.write(currentTime)</script></small></li>
-					 
-                  </ul>
-                  <!-- /.breadcrumb -->
-               </div>
                <div class="page-content">
                   <!-- PAGE CONTENT BEGINS -->
                   <small>
                      
                   </small>
                   <div class="row">
-                     <div class="col-sm-9">
+                     <div class="col-sm-6">
                         <!-- Begin BART -->
                         <div class="widget-box transparent">
                            <div class="widget-header widget-header-flat">
-                              <h5 class="widget-title lighter">
+                              <h3 class="widget-title lighter">
                                  <i class="ace-icon fa fa-rss orange"></i>
                                  Catch BART
-                              </h5>
+                              </h3>
                            </div>
                            <div class="widget-body">
                               <div class="widget-main no-padding">
@@ -282,7 +275,7 @@
                      </div>
                      <!-- End WEATHER -->
                      <!-- Begin STOCKS -->
-                     <div class="col-sm-3">
+                     <div class="col-sm-2">
                         <div class="widget-box transparent">
                            <div class="widget-header widget-header-flat">
                               <h5 class="widget-title lighter">
