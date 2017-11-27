@@ -9,7 +9,7 @@ debug = 0
 #Weather Underground variables
 wAPIURL = 'http://api.wunderground.com/api/'
 wState = 'CA'
-wCities = ['San Francisco', 'Walnut Creek']
+wCities = ['San Francisco', 'Walnut Creek', 'Truckee']
 allWeatherData = []
 
 ##Weather Underground script
@@ -49,5 +49,11 @@ weatherOutput = ('\n'.join([
     'var wPrecip2 = "' + str(allWeatherData[1][2]) + " in" + '";',
     'var wWind2 = "' + str(allWeatherData[1][3]) + " mph " + '";',
     'var wHumidity2 = "' + str(allWeatherData[1][4]) + '";',
+    'var wCity3 = "' + str(wCities[2]) + '";',
+    'var wWeather3 = "' + str(allWeatherData[2][0]) + '";',
+    'var wTemp3 = "' + str(allWeatherData[2][1]) + " F" + '";',
+    'var wPrecip3 = "' + str(allWeatherData[2][2]) + " in" + '";',
+    'var wWind3 = "' + str(allWeatherData[2][3]) + " mph " + '";',
+    'var wHumidity3 = "' + str(allWeatherData[2][4]) + '";',
     '\n',
     ]))
