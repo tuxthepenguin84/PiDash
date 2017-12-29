@@ -13,7 +13,7 @@ iexAPIURL = 'https://api.iextrading.com/1.0/stock/'
 
 ##CoinMarketCap script
 #Get JSON data from AV
-cCCSymbol = ['bitcoin','ethereum','litecoin']
+cCCSymbol = ['bitcoin','bitcoin-cash','ethereum','litecoin','ripple','dash','zcash','monero']
 allCurrency = []
 for eachCCSymbol in cCCSymbol:
     currency = []
@@ -41,8 +41,13 @@ if debug == 0:
 #Final variables
 stocksCurrenciesOutput = ('\n'.join([
     'var btcPrice = "' + "$ " + str(allCurrency[0][0]) + '";',
-    'var ethPrice = "' + "$ " + str(allCurrency[1][0]) + '";',
-    'var ltcPrice = "' + "$ " + str(allCurrency[2][0]) + '";',
+    'var btcCashPrice = "' + "$ " + str(allCurrency[1][0]) + '";',
+    'var ethPrice = "' + "$ " + str(allCurrency[2][0]) + '";',
+    'var ltcPrice = "' + "$ " + str(allCurrency[3][0]) + '";',
+    'var ripplePrice = "' + "$ " + str(allCurrency[4][0]) + '";',
+    'var dashPrice = "' + "$ " + str(allCurrency[5][0]) + '";',
+    'var zcashPrice = "' + "$ " + str(allCurrency[6][0]) + '";',
+    'var moneroPrice = "' + "$ " + str(allCurrency[7][0]) + '";',
     'var zngaPrice = "' + "$ " + str(allStock[0][0]) + '";',
     'var mckPrice = "' + "$ " + str(allStock[1][0]) + '";',
     '\n',
