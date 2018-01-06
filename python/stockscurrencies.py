@@ -13,7 +13,7 @@ iexAPIURL = 'https://api.iextrading.com/1.0/stock/'
 
 ##CoinMarketCap script
 #Get JSON data from AV
-cCCSymbol = ['bitcoin','bitcoin-cash','ethereum','litecoin','ripple','dash','zcash','monero','stellar','tron']
+cCCSymbol = ['bitcoin','bitcoin-cash','ethereum','litecoin','ripple','dash','zcash','monero','stellar','tron','neo','wabi','substratum']
 allCurrency = []
 for eachCCSymbol in cCCSymbol:
     currency = []
@@ -50,6 +50,9 @@ stocksCurrenciesOutput = ('\n'.join([
     'var moneroPrice = "' + "$ " + str(allCurrency[7][0]) + '";',
     'var stellarPrice = "' + "$ " + str(allCurrency[8][0]) + '";',
     'var tronPrice = "' + "$ " + str(allCurrency[9][0]) + '";',
+    'var neoPrice = "' + "$ " + str(allCurrency[10][0]) + '";',
+    'var wabiPrice = "' + "$ " + str(allCurrency[11][0]) + '";',
+    'var substratumPrice = "' + "$ " + str(allCurrency[12][0]) + '";',
     'var zngaPrice = "' + "$ " + str(allStock[0][0]) + '";',
     'var mckPrice = "' + "$ " + str(allStock[1][0]) + '";',
     '\n',
