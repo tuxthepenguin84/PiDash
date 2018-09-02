@@ -22,7 +22,7 @@ gFullURL = gAPIURL + \
                   '&key=' + gAPIKey
 
 #BART variables
-alexisWalk = 3 #Number of minutes walking from Alexis's car to station
+alexisWalk = 1 #Number of minutes walking from Alexis's car to station
 samWalk = 6 #Number of minutes walking from Sam's car to station
 allTrains = []
 alexisTrain = []
