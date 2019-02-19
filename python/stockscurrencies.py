@@ -23,7 +23,7 @@ for eachCCSymbol in cCCSymbol:
     currency.append(round(cCurrentPrice,2))
     allCurrency.append(currency)
 
-iexSMSymbol = ['znga', 'mck']
+iexSMSymbol = ['znga', 'mck', 'fit']
 allStock = []
 for eachSMSymbol in iexSMSymbol:
     stock = []
@@ -55,5 +55,6 @@ stocksCurrenciesOutput = ('\n'.join([
     'var substratumPrice = "' + "$ " + str(allCurrency[12][0]) + '";',
     'var zngaPrice = "' + "$ " + str(allStock[0][0]) + '";',
     'var mckPrice = "' + "$ " + str(allStock[1][0]) + '";',
+    'var fitPrice = "' + "$ " + str(allStock[2][0]) + '";',
     '\n',
     ]))
