@@ -5,7 +5,7 @@ print('Refreshing BART data... ', end="")
 from catchbart import catchBartOutput
 print('DONE')
 print('Refreshing Weather data... ', end="")
-from weather import weatherOutput
+#from weather import weatherOutput
 print('DONE')
 print('Refreshing Stock & Currency data... ', end="")
 from stockscurrencies import stocksCurrenciesOutput
@@ -29,7 +29,7 @@ with open('../html/index.html', 'a') as outfile:
                                       currentTime + \
                                       catchBartOutput + \
                                       stocksCurrenciesOutput + \
-                                      weatherOutput + \
+#                                      weatherOutput + \
                                       scriptEnd)
             outfile.write(eachLine)
         else:
